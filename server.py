@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from model import db, connect_to_db, Card
+# from model import db, connect_to_db, Card
 
 app = Flask(__name__)
 
@@ -88,9 +88,14 @@ def add_card():
     name = request.form.get('name')
     skill = request.form.get('skill')
 
-    new_card = Card(name=name, skill=skill)
-    db.session.add(new_card)
-    db.session.commit()
+    # new_card = Card(name=name, skill=skill)
+    # db.session.add(new_card)
+    # db.session.commit()
+    DATA['cards'].append({
+              "name": name,
+              "skill": skill,
+              "imgUrl": "/static/img/placeholder.jpg"
+            })
 
     return jsonify({"success": True})
 
